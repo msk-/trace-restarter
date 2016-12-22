@@ -51,17 +51,16 @@ void do_trace(pid_t child_pid) {
             die("Error attempting to trace child");
         }
 
+        wait(&child_status);
+
         if (WIFEXITED(child_status)) {
-            printf("Child exited. Status: %d", child_status);
+            /* printf("Child exited. Status: %d", child_status); */
             break;
         }
-
-        wait(&child_status);
 
         if (ptrace(PTRACE_GETREGS, child_pid, NULL, &child_regs) < 0) {
             die("Error attempting to read child registers");
         }
-
     }
 }
 
