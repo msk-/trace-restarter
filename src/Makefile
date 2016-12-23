@@ -35,6 +35,9 @@ $(shell mkdir -p $(RAGELDIR) > /dev/null)
 
 all: $(BIN)
 
+syscalls.h: build_syscall_table.py
+	./$^ /usr/lib/modules/4.8.13-1-ARCH/build/arch/x86/include/generated/uapi/asm/unistd_64.h > $@
+
 run: $(BIN)
 	./$(BIN)
 

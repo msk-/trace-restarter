@@ -13,6 +13,8 @@
 #include <sys/user.h>
 #include <unistd.h>
 
+#include "syscalls.h"
+
 void die(char* message){
     printf("Error. Message: '%s'\n", message);
     exit(-1);
