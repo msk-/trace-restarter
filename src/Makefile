@@ -33,7 +33,7 @@ $(shell mkdir -p $(DEPDIR) > /dev/null)
 $(shell mkdir -p $(OBJDIR) > /dev/null)
 $(shell mkdir -p $(RAGELDIR) > /dev/null)
 
-all: $(BIN)
+all: $(BIN) syscalls.h
 
 syscalls.h: build_syscall_table.py
 	./$^ /usr/lib/modules/4.8.13-1-ARCH/build/arch/x86/include/generated/uapi/asm/unistd_64.h > $@

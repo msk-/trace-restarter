@@ -36,6 +36,13 @@ void do_tracee(int argc, int offset, char** argv) {
     /* Copy the arguments we're interested in; null-terminate */
     memcpy(copied_args, argv + offset, (args_length - 1) * sizeof(char*));
     copied_args[args_length - 1] = (char*)NULL;
+
+    printf("Calling: ");
+    for (int i=0; i<args_length; i++) {
+        printf("%s ", copied_args[i]);
+    }
+    printf("\n");
+
     if (ptrace(PTRACE_TRACEME, NULL, NULL, NULL) < 0) {
         die("Error calling ptrace in child.");
     }
@@ -63,6 +70,7 @@ void do_trace(pid_t child_pid) {
         if (ptrace(PTRACE_GETREGS, child_pid, NULL, &child_regs) < 0) {
             die("Error attempting to read child registers");
         }
+
     }
 }
 
